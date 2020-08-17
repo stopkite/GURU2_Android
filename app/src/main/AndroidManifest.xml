@@ -16,9 +16,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDjoKyYjHFhZuHgjXwLgeRMCxCpwWW_F8w"/>
-        <activity android:name=".friendList">
 
-        </activity>
+        <activity android:name=".friendList" />
         <activity android:name=".withmefriendActivity">
 
         </activity>
@@ -32,6 +31,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".restaurant_list"></activity>
+        <activity android:name=".nearsearch" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".Find_RestaurantActivity">
+
         </activity>
     </application>
 
