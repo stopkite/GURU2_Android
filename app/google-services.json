@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1023631761144",
+    "firebase_url": "https://guru2-android12.firebaseio.com",
+    "project_id": "guru2-android12",
+    "storage_bucket": "guru2-android12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023631761144:android:0bb6bfc8668f24a391650d",
+        "android_client_info": {
+          "package_name": "com.example.cho6.guru2_android12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023631761144-k4j7nck5243hlpr4n9854ngfsop6vok2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdOBoLLp078z_-YaN7Gn4y3YYj-ClyiAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023631761144-k4j7nck5243hlpr4n9854ngfsop6vok2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
