@@ -52,6 +52,11 @@ class withmefriendActivity : AppCompatActivity(), OnMapReadyCallback,
     private var mFusedLocationClient: FusedLocationProviderClient? = null
     private var locationRequest: LocationRequest? = null
     private var location: Location? = null
+
+//    전달할 위도와 경도가 저장되는 곳
+    private var latitude : Double?=null
+    private var longitude: Double?=null
+
     private var mLayout // Snackbar 사용하기 위해서는 View가 필요합니다.
             : View? = null
 
@@ -76,9 +81,14 @@ class withmefriendActivity : AppCompatActivity(), OnMapReadyCallback,
             .findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
 
-        // 위드미 버튼 클릭 리스너
+//        위드미 버튼 클릭 리스너
         withmeButton.setOnClickListener {
             val nextIntent= Intent(this, friendList::class.java)
+//            위도와 경도 friendList로 정보 보내주기
+            nextIntent.apply {
+                this.putExtra("latitude", latitude)
+                this.putExtra("longitute", longitude)
+            }
             startActivity(nextIntent)
         }
     }
@@ -161,6 +171,10 @@ class withmefriendActivity : AppCompatActivity(), OnMapReadyCallback,
                     TAG,
                     "onLocationResult : $markerSnippet"
                 )
+
+//                위도 경도 변수 설정
+                longitude=location!!.longitude
+                latitude=location!!.latitude
 
 
                 //현재 위치에 마커 생성하고 이동

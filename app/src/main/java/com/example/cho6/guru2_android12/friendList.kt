@@ -3,6 +3,7 @@ package com.example.cho6.guru2_android12
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,13 @@ class friendList : AppCompatActivity() {
         binding=ActivityFriendListBinding.inflate(layoutInflater)
         val view=binding.root
         setContentView(view)
+
+//        인텐트에서 위도와 경도 받아오기
+        var latitude:Double?=intent.getDoubleExtra("latitude", 1.0)
+        var longitude:Double?=intent.getDoubleExtra("longitute", 1.0)
+//        위도 경도 withmefriendActivity에서 friendList로 넘어왔는지 확인용 로그
+        Log.d("lat", "받아온 위도 : "+latitude)
+        Log.d("lat", "받아온 경도 : "+longitude)
 
         data.add(Friends("김채영", "247"))
         data.add(Friends("정지연", "256"))

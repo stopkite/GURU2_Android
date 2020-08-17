@@ -15,22 +15,22 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDjoKyYjHFhZuHgjXwLgeRMCxCpwWW_F8w"/>
+            android:value="AIzaSyCQuhSN_lxC5P07BcfzmSNoWPja6y5ElOo"/>
 
         <activity android:name=".friendList" />
         <activity android:name=".withmefriendActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".ChatRoomActivity" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".restaurant_list"></activity>
