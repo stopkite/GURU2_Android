@@ -31,12 +31,12 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_withmefriend.*
 import java.io.IOException
 import java.util.*
 
 
-class MainActivity : AppCompatActivity(), OnMapReadyCallback,
+class withmefriendActivity : AppCompatActivity(), OnMapReadyCallback,
     OnRequestPermissionsResultCallback {
     private var mMap: GoogleMap? = null
     private var currentMarker: Marker? = null
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_withmefriend)
         mLayout = findViewById(R.id.layout_main)
         locationRequest = LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
                     "확인",
                     View.OnClickListener { // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
                         ActivityCompat.requestPermissions(
-                            this@MainActivity, REQUIRED_PERMISSIONS,
+                            this@withmefriendActivity, REQUIRED_PERMISSIONS,
                             PERMISSIONS_REQUEST_CODE
                         )
                     }).show()
@@ -373,7 +373,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
     //여기부터는 GPS 활성화를 위한 메소드들
     private fun showDialogForLocationServiceSetting() {
         val builder =
-            AlertDialog.Builder(this@MainActivity)
+            AlertDialog.Builder(this@withmefriendActivity)
         builder.setTitle("위치 서비스 비활성화")
         builder.setMessage(
             """
@@ -441,14 +441,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
 //import com.google.android.gms.maps.SupportMapFragment
 //import com.google.android.gms.maps.model.LatLng
 //import com.google.android.gms.maps.model.MarkerOptions
-//import kotlinx.android.synthetic.main.activity_main.*
+//import kotlinx.android.synthetic.main.activity_withmefriend.*
 //
 //
-//class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+//class withmefriendActivity : AppCompatActivity(), OnMapReadyCallback {
 //    private var mMap: GoogleMap? = null
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_withmefriend)
 //        val mapFragment = supportFragmentManager
 //            .findFragmentById(R.id.map) as SupportMapFragment?
 //        mapFragment!!.getMapAsync(this)
@@ -471,10 +471,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,
 //        mMap!!.animateCamera(CameraUpdateFactory.zoomTo(10f))
 //    }
 //}
-//class MainActivity : AppCompatActivity() {
+//class withmefriendActivity : AppCompatActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_withmefriend)
 //
 //        withmeButton.setOnClickListener {
 //            val nextIntent=Intent(this, friendList::class.java)
