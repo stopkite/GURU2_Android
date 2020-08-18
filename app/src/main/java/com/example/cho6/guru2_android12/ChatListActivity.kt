@@ -45,34 +45,37 @@ class ChatListActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         val adapter = GroupAdapter<GroupieViewHolder>() // recycleview apdapter(1)
+
         val database = Firebase.database
         val myUid: String? = auth.uid
         val yourUid: String? = intent.getStringExtra("yourUid")
 
 
-            // read data from a new document with a generated Id(데이터 읽기)
-            db.collection("users")
-                .get()
-                .addOnSuccessListener { result ->
+        // read data from a new document with a generated Id(데이터 읽기)
+        db.collection("users")
+            .get()
+            .addOnSuccessListener { result ->
 
-
-                    for (document in result) {
-                        if (document.get("uid") != myUid)
-                            adapter.add(
-                                UserItem(
-                                    document.get("username").toString(),
-                                    document.get("uid").toString()
-                                )
+                for (document in result) {
+                    if (document.get("uid") != myUid)
+                        adapter.add(
+                            UserItem(
+                                document.get("username").toString(),
+                                document.get("uid").toString(),
+                                document.get("profileImageUrl").toString()
                             )
-                    }
-
-                        //document.get("uid") != myUid
-                    recycle_view_list.adapter = adapter // recycleview apdapter(2)
+                        )
 
                 }
-                .addOnFailureListener { exception ->
-                    Log.w(TAG, "Error getting documents.", exception)
-                }
+
+                //document.get("uid") != myUid
+                recycle_view_list.adapter = adapter // recycleview apdapter(2)
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+
 
         // 's4.채팅방' 화면으로 이동하기 위한 함수
         adapter.setOnItemClickListener { item, view ->
@@ -87,4 +90,5 @@ class ChatListActivity : AppCompatActivity() {
         }
         recycle_view_list.adapter = adapter
     }
+
 }
