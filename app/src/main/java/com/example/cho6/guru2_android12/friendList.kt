@@ -48,13 +48,11 @@ class friendList : AppCompatActivity() {
         Log.d("lat", "완료")
 
 
-
-
 //        data.add(Friends("김채영", "247"))
 //        data.add(Friends("정지연", "256"))
 
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
-        //binding.recyclerView.adapter=FriendListAdapter(data)
+        binding.recyclerView.adapter=FriendListAdapter(friendListViewModel.data)
 
         myDialog=Dialog(this)
     }
@@ -157,14 +155,17 @@ class FriendListAdapter(private val myDataset: List<Friends>) :
 class FriendListViewModel:ViewModel(){
     val db = Firebase.firestore
 
-    private val data= arrayListOf<Friends>()
+    val data= arrayListOf<Friends>()
 
     fun addMyLocation(latitude:Double, longitude:Double){
+        Log.d("lat", "들어왔다")
         val user= FirebaseAuth.getInstance().currentUser
-        if(user!=null) {
+//        if(user!=null) {
             db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", latitude)
-            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", longitude)
-        }
+        Log.d("lat", "들어왔다2")
+
+        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", longitude)
+//        }
 
     }
 
