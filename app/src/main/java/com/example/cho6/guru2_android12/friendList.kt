@@ -23,25 +23,25 @@ class friendList : AppCompatActivity() {
 
     private lateinit var binding: ActivityFriendListBinding
 
-    private val friendListViewModel:FriendListViewModel by viewModels()
+    private val friendListViewModel: FriendListViewModel by viewModels()
 
 //    private val data= arrayListOf<Friends>()
 
-    var myDialog: Dialog?=null
+    var myDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityFriendListBinding.inflate(layoutInflater)
-        val view=binding.root
+        binding = ActivityFriendListBinding.inflate(layoutInflater)
+        val view = binding.root
         setContentView(view)
 
 //        인텐트에서 위도와 경도 받아오기
-        var latitude:Double?=intent.getDoubleExtra("latitude", 1.0)
-        var longitude:Double?=intent.getDoubleExtra("longitute", 1.0)
+        var latitude: Double? = intent.getDoubleExtra("latitude", 1.0)
+        var longitude: Double? = intent.getDoubleExtra("longitute", 1.0)
 
 //        위도 경도 withmefriendActivity에서 friendList로 넘어왔는지 확인용 로그
-        Log.d("lat", "받아온 위도 : "+latitude)
-        Log.d("lat", "받아온 경도 : "+longitude)
+        Log.d("lat", "받아온 위도 : " + latitude)
+        Log.d("lat", "받아온 경도 : " + longitude)
 
         friendListViewModel.addMyLocation(latitude!!, longitude!!)
 
@@ -51,78 +51,78 @@ class friendList : AppCompatActivity() {
 //        data.add(Friends("김채영", "247"))
 //        data.add(Friends("정지연", "256"))
 
-        binding.recyclerView.layoutManager=LinearLayoutManager(this)
-        binding.recyclerView.adapter=FriendListAdapter(friendListViewModel.data)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = FriendListAdapter(friendListViewModel.data)
 
-        myDialog=Dialog(this)
+        myDialog = Dialog(this)
     }
 
-    fun ShowCallOnePop(v:View){
-        val textView:TextView
-        val butClose:Button
-        val butNo:Button
-        val butYes:Button
+    fun ShowCallOnePop(v: View) {
+        val textView: TextView
+        val butClose: Button
+        val butNo: Button
+        val butYes: Button
         myDialog?.setContentView(R.layout.call_one)
-        textView= myDialog?.findViewById(R.id.nickname_call_one) as TextView
-        butClose= myDialog?.findViewById(R.id.close_call_one) as Button
-        butYes=myDialog?.findViewById(R.id.yes_call_one) as Button
-        butNo=myDialog?.findViewById(R.id.no_call_one) as Button
+        textView = myDialog?.findViewById(R.id.nickname_call_one) as TextView
+        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
+        butYes = myDialog?.findViewById(R.id.yes_call_one) as Button
+        butNo = myDialog?.findViewById(R.id.no_call_one) as Button
         butClose.setOnClickListener {
             myDialog!!.dismiss()
         }
         butNo.setOnClickListener {
             myDialog!!.dismiss()
-            val failedWindow:Button= myDialog?.findViewById(R.id.no_call_one)!!
+            val failedWindow: Button = myDialog?.findViewById(R.id.no_call_one)!!
             ShowNoPop(failedWindow)
         }
         butYes.setOnClickListener {
             myDialog!!.dismiss()
-            val okWindow:Button= myDialog?.findViewById(R.id.yes_call_one)!!
+            val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
         }
         myDialog!!.show()
     }
 
-    fun ShowCallAllPop(v:View){
-        val textView:TextView
-        val butClose:Button
-        val butNo:Button
-        val butYes:Button
+    fun ShowCallAllPop(v: View) {
+        val textView: TextView
+        val butClose: Button
+        val butNo: Button
+        val butYes: Button
         myDialog?.setContentView(R.layout.call_all)
-        textView= myDialog?.findViewById(R.id.nickname_call_one) as TextView
-        butClose= myDialog?.findViewById(R.id.close_call_one) as Button
-        butYes=myDialog?.findViewById(R.id.yes_call_one) as Button
-        butNo=myDialog?.findViewById(R.id.no_call_one) as Button
+        textView = myDialog?.findViewById(R.id.nickname_call_one) as TextView
+        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
+        butYes = myDialog?.findViewById(R.id.yes_call_one) as Button
+        butNo = myDialog?.findViewById(R.id.no_call_one) as Button
         butClose.setOnClickListener {
             myDialog!!.dismiss()
         }
         butNo.setOnClickListener {
             myDialog!!.dismiss()
-            val failedWindow:Button= myDialog?.findViewById(R.id.no_call_one)!!
+            val failedWindow: Button = myDialog?.findViewById(R.id.no_call_one)!!
             ShowNoPop(failedWindow)
         }
         butYes.setOnClickListener {
             myDialog!!.dismiss()
-            val okWindow:Button= myDialog?.findViewById(R.id.yes_call_one)!!
+            val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
         }
         myDialog!!.show()
     }
 
-    fun ShowYesPop(v:View){
-        val butClose:Button
+    fun ShowYesPop(v: View) {
+        val butClose: Button
         myDialog?.setContentView(R.layout.call_ok)
-        butClose= myDialog?.findViewById(R.id.close_call_one) as Button
+        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
         butClose.setOnClickListener {
             myDialog!!.dismiss()
         }
         myDialog!!.show()
     }
 
-    fun ShowNoPop(v:View){
-        val butClose:Button
+    fun ShowNoPop(v: View) {
+        val butClose: Button
         myDialog?.setContentView(R.layout.call_fail)
-        butClose= myDialog?.findViewById(R.id.close_call_one) as Button
+        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
         butClose.setOnClickListener {
             myDialog!!.dismiss()
         }
@@ -130,41 +130,45 @@ class friendList : AppCompatActivity() {
     }
 }
 
-data class Friends(val nickname:String, var distance:String)
+data class Friends(val nickname: String, var distance: String)
 
 class FriendListAdapter(private val myDataset: List<Friends>) :
     RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder>() {
 
-    class FriendListViewHolder(val binding: ItemFriendsBinding) : RecyclerView.ViewHolder(binding.root)
+    class FriendListViewHolder(val binding: ItemFriendsBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): FriendListAdapter.FriendListViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FriendListAdapter.FriendListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_friends, parent, false)
         return FriendListViewHolder(ItemFriendsBinding.bind(view))
     }
 
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
-        holder.binding.nickname.text=myDataset[position].nickname
-        holder.binding.distance.text=myDataset[position].distance
+        holder.binding.nickname.text = myDataset[position].nickname
+        holder.binding.distance.text = myDataset[position].distance
     }
 
     override fun getItemCount() = myDataset.size
 }
 
-class FriendListViewModel:ViewModel(){
+class FriendListViewModel : ViewModel() {
     val db = Firebase.firestore
 
-    val data= arrayListOf<Friends>()
+    val data = arrayListOf<Friends>()
 
-    fun addMyLocation(latitude:Double, longitude:Double){
+    fun addMyLocation(myLatitude: Double, myLongitude: Double) {
         Log.d("lat", "들어왔다")
-        val user= FirebaseAuth.getInstance().currentUser
+        val user = FirebaseAuth.getInstance().currentUser
 //        if(user!=null) {
-            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", latitude)
-        Log.d("lat", "들어왔다2")
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", myLatitude)
+            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", myLongitude)
 
-        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", longitude)
+        }
 //        }
 
     }
