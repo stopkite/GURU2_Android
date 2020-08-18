@@ -20,6 +20,7 @@ import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -166,17 +167,16 @@ class FriendListViewModel : ViewModel() {
     val db = Firebase.firestore
 
     val data = arrayListOf<Friends>()
-//
-    private lateinit var database: DatabaseReference
 
     // 내 위치를 데이터베이스에 저장하기 위한 함수
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
-        database=Firebase.database.reference
+        val testla= hashMapOf("latitude" to myLatitude)
+        val testlo= hashMapOf("longitude" to myLongitude)
 
-        database.child("users").child("tDqIF2oBx1bvUmCgaDwN")
-            .child("latitude").setValue(myLatitude.toString())
-
-        Log.d("test", "성공이면 좋겠다")
+        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN")
+            .set(testla, SetOptions.merge())
+        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN")
+            .set(testlo, SetOptions.merge())
     }
 
     // 상대방의 위도와 경도로 거리를 계산하여 화면에 표시될 사람을 골라내는 함수
