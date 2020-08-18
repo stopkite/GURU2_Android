@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -41,14 +43,11 @@ class friendList : AppCompatActivity() {
         var latitude: Double? = intent.getDoubleExtra("latitude", 1.0)
         var longitude: Double? = intent.getDoubleExtra("longitute", 1.0)
 
-//        위도 경도 withmefriendActivity에서 friendList로 넘어왔는지 확인용 로그
-        Log.d("lat", "받아온 위도 : " + latitude)
-        Log.d("lat", "받아온 경도 : " + longitude)
+////        위도 경도 withmefriendActivity에서 friendList로 넘어왔는지 확인용 로그
+//        Log.d("lat", "받아온 위도 : " + latitude)
+//        Log.d("lat", "받아온 경도 : " + longitude)
 
         friendListViewModel.addMyLocation(latitude!!, longitude!!)
-
-        Log.d("lat", "완료")
-
 
 //        data.add(Friends("김채영", "247"))
 //        data.add(Friends("정지연", "256"))
@@ -167,17 +166,17 @@ class FriendListViewModel : ViewModel() {
     val db = Firebase.firestore
 
     val data = arrayListOf<Friends>()
+//
+    private lateinit var database: DatabaseReference
 
     // 내 위치를 데이터베이스에 저장하기 위한 함수
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
-        db.collection("users")
-            .add(data)
-            .addOnSuccessListener { result ->
-                Log.d("test", " result : "+result.id)
-            }
-            .addOnFailureListener { e ->
-                Log.w("test", "Error adding document", e)
-            }
+        database=Firebase.database.reference
+
+        database.child("users").child("tDqIF2oBx1bvUmCgaDwN")
+            .child("latitude").setValue(myLatitude.toString())
+
+        Log.d("test", "성공이면 좋겠다")
     }
 
     // 상대방의 위도와 경도로 거리를 계산하여 화면에 표시될 사람을 골라내는 함수
