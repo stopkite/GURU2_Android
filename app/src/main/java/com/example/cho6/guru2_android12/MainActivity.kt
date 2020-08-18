@@ -1,14 +1,28 @@
 // s1.메인 화면
 package com.example.cho6.guru2_android12
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
+import androidx.core.view.drawToBitmap
 import com.example.cho6.guru2_android12.Model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.chat_list.view.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +35,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) // 's1.메인 화면(회원가입 및 로그인 창)'을 위한 xml 사용
 
         auth = FirebaseAuth.getInstance()
+
+        // 프로필 사진 등록을 위한 버튼 함수
+        select_profile_photo.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent,0)
+        }
+
 
         // 회원 가입 등록을 완료하기 위한 버튼 함수
         join_button.setOnClickListener {
@@ -35,8 +57,9 @@ class MainActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "성공") // 계정 등록 성공 여부를 알리는 Log
 
-                        val uid = FirebaseAuth.getInstance().uid ?: ""  // 등록할 사용자 id
+                        uploadImageToFirebaseStorage()
 
+                        val uid = FirebaseAuth.getInstance().uid ?: ""  // 등록할 사용자 id
                         val user = User(uid, username.text.toString())  // 등록할 사용자이름 변수
 
                         // 데이터베이스에 유저 정보를 넣어줘야 한다. -> Model 파일 User.kt 생성
@@ -74,4 +97,64 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    var selectedPhotoUri: Uri? = null
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
+            // proceed and check what the selected image was...
+
+            selectedPhotoUri = data.data
+
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedPhotoUri)
+
+            select_photo_imageview_register.setImageBitmap(bitmap)
+            select_profile_photo.alpha = 0f
+            /*   val bitmapDrawable = BitmapDrawable(bitmap)
+               select_profile_photo.setBackgroundDrawable(bitmapDrawable)*/
+        }
+    }
+
+    private fun uploadImageToFirebaseStorage(){
+        if(selectedPhotoUri == null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+
+        ref.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                ref.downloadUrl.addOnSuccessListener {
+
+                    saveUserToFireDatabase(it.toString())
+                }
+            }
+    }
+
+    /*  private fun saveUserToFireDatabase(profileImageUrl: String){
+          val uid = FirebaseAuth.getInstance().uid ?:""
+          val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+
+          val user = userProfile(uid,username.text.toString(),profileImageUrl)
+          ref.setValue(user)
+              .addOnSuccessListener {
+
+              }
+      }*/
+    private fun saveUserToFireDatabase(profileImageUrl: String){
+        val uid = FirebaseAuth.getInstance().uid ?:""
+        val ref = FirebaseFirestore.getInstance().collection("users")
+
+        val user = userProfile(uid,username.text.toString(),profileImageUrl)
+        ref.document(uid)
+            .set(user)
+            .addOnSuccessListener {
+
+            }
+
+    }
+
 }
+
+class userProfile(val uid:String, val username: String, val profileImageUrl: String)

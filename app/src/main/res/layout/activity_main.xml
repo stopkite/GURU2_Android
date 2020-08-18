@@ -8,72 +8,95 @@
     tools:context=".MainActivity">
 
     // 사용자이름 등록 창
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     // 이메일 주소 등록 창
-    <EditText
-        android:id="@+id/email_area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="email_area"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     // 비밀번호 등록 창
-    <EditText
-        android:id="@+id/password_area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="password_area"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_area" />
 
     // 회원 가입 신청 버튼
+
+    // 로그인하기 버튼
+
     <Button
         android:id="@+id/join_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
+        android:background="#FF5722"
         android:text="join_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#FF5722"
         app:layout_constraintTop_toBottomOf="@+id/password_area" />
 
-    // 로그인하기 버튼
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_profile_photo" />
+
+    <EditText
+        android:id="@+id/email_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="email_area"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <EditText
+        android:id="@+id/password_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="password_area"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_area" />
+
     <Button
         android:id="@+id/login_button_main"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:background="#FF5722"
         android:text="login_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#FF5722"
         app:layout_constraintTop_toBottomOf="@+id/join_button" />
+
+    <Button
+        android:id="@+id/select_profile_photo"
+        android:layout_width="194dp"
+        android:layout_height="182dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/select_profile_photo"
+        android:text="select photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/select_photo_imageview_register"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        app:layout_constraintBottom_toBottomOf="@+id/select_profile_photo"
+        app:layout_constraintEnd_toEndOf="@+id/select_profile_photo"
+        app:layout_constraintStart_toStartOf="@+id/select_profile_photo"
+        app:layout_constraintTop_toTopOf="@+id/select_profile_photo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
