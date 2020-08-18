@@ -9,16 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class friendList : AppCompatActivity() {
 
     private lateinit var binding: ActivityFriendListBinding
 
-    private val data= arrayListOf<Friends>()
+    private val friendListViewModel:FriendListViewModel by viewModels()
+
+//    private val data= arrayListOf<Friends>()
 
     var myDialog: Dialog?=null
 
@@ -31,15 +38,23 @@ class friendList : AppCompatActivity() {
 //        인텐트에서 위도와 경도 받아오기
         var latitude:Double?=intent.getDoubleExtra("latitude", 1.0)
         var longitude:Double?=intent.getDoubleExtra("longitute", 1.0)
+
 //        위도 경도 withmefriendActivity에서 friendList로 넘어왔는지 확인용 로그
         Log.d("lat", "받아온 위도 : "+latitude)
         Log.d("lat", "받아온 경도 : "+longitude)
 
-        data.add(Friends("김채영", "247"))
-        data.add(Friends("정지연", "256"))
+        friendListViewModel.addMyLocation(latitude!!, longitude!!)
+
+        Log.d("lat", "완료")
+
+
+
+
+//        data.add(Friends("김채영", "247"))
+//        data.add(Friends("정지연", "256"))
 
         binding.recyclerView.layoutManager=LinearLayoutManager(this)
-        binding.recyclerView.adapter=FriendListAdapter(data)
+        //binding.recyclerView.adapter=FriendListAdapter(data)
 
         myDialog=Dialog(this)
     }
@@ -137,4 +152,26 @@ class FriendListAdapter(private val myDataset: List<Friends>) :
     }
 
     override fun getItemCount() = myDataset.size
+}
+
+class FriendListViewModel:ViewModel(){
+    val db = Firebase.firestore
+
+    private val data= arrayListOf<Friends>()
+
+    fun addMyLocation(latitude:Double, longitude:Double){
+        val user= FirebaseAuth.getInstance().currentUser
+        if(user!=null) {
+            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", latitude)
+            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", longitude)
+        }
+
+    }
+
+//    fun whoCanWithme{
+//
+//    }
+//
+//    fun calculateDistance
+
 }
