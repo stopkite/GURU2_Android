@@ -163,13 +163,19 @@ class FriendListViewModel : ViewModel() {
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
         Log.d("lat", "들어왔다")
         val user = FirebaseAuth.getInstance().currentUser
-//        if(user!=null) {
-        FirebaseAuth.getInstance().currentUser?.let { users ->
-            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", myLatitude)
-            db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", myLongitude)
-
-        }
-//        }
+        db.collection("users")
+            .addSnapshotListener{ value, e->
+                if(e!=null){
+                    return@addSnapshotListener
+                }
+                data.clear()
+                for(document in value!!){
+                    val testlist=Friends(
+                        document.getString("text")!!,
+                        document.getString("value")!!
+                    )
+                }
+            }
 
     }
 
