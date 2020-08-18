@@ -164,7 +164,7 @@ class FriendListViewModel : ViewModel() {
         Log.d("lat", "들어왔다")
         val user = FirebaseAuth.getInstance().currentUser
 //        if(user!=null) {
-        FirebaseAuth.getInstance().currentUser?.let { user ->
+        FirebaseAuth.getInstance().currentUser?.let { users ->
             db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("latitude", myLatitude)
             db.collection("users").document("tDqIF2oBx1bvUmCgaDwN").update("longitude", myLongitude)
 
