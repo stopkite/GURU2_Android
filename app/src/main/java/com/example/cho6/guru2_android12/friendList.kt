@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -55,6 +57,8 @@ class friendList : AppCompatActivity() {
         binding.recyclerView.adapter = FriendListAdapter(friendListViewModel.data)
 
         myDialog = Dialog(this)
+
+
     }
 
     fun ShowCallOnePop(v: View) {
@@ -130,7 +134,9 @@ class friendList : AppCompatActivity() {
     }
 }
 
-data class Friends(val nickname: String, var distance: String)
+data class Friends(
+    val nickname: String,
+    var distance: String)
 
 class FriendListAdapter(private val myDataset: List<Friends>) :
     RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder>() {
@@ -156,33 +162,32 @@ class FriendListAdapter(private val myDataset: List<Friends>) :
 }
 
 class FriendListViewModel : ViewModel() {
+
+    val friendLiveData= MutableLiveData<List<Friends>>()
     val db = Firebase.firestore
 
     val data = arrayListOf<Friends>()
 
+    // 내 위치를 데이터베이스에 저장하기 위한 함수
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
-        Log.d("lat", "들어왔다")
-        val user = FirebaseAuth.getInstance().currentUser
         db.collection("users")
-            .addSnapshotListener{ value, e->
-                if(e!=null){
-                    return@addSnapshotListener
-                }
-                data.clear()
-                for(document in value!!){
-                    val testlist=Friends(
-                        document.getString("text")!!,
-                        document.getString("value")!!
-                    )
-                }
+            .add(data)
+            .addOnSuccessListener { result ->
+                Log.d("test", " result : "+result.id)
             }
+            .addOnFailureListener { e ->
+                Log.w("test", "Error adding document", e)
+            }
+    }
+
+    // 상대방의 위도와 경도로 거리를 계산하여 화면에 표시될 사람을 골라내는 함수
+    fun findFriend(){
 
     }
 
-//    fun whoCanWithme{
-//
-//    }
-//
-//    fun calculateDistance
-
+    // 리사이클뷰에 추가하는 함수
+    fun addRecyclerView(friendlist : Friends){
+        data.add(friendlist)
+        friendLiveData.value=data
+    }
 }
