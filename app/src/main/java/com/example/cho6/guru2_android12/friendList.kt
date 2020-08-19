@@ -42,17 +42,8 @@ class friendList : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         friendListViewModel.addMyLocation(latitude!!, longitude!!)
         friendListViewModel.findFriend(latitude!!, longitude!!)
-
-//        friendListViewModel.data.add(Friends("김채영", "247"))
-//        friendListViewModel.data.add(Friends("정지연", "256"))
-
-//        Log.d("test", "다시 : " + friendListViewModel.data)
-//        Log.d("test", "또다시 : " + "" + testList)
-
-
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = FriendListAdapter(emptyList())
@@ -142,6 +133,7 @@ class friendList : AppCompatActivity() {
 
 // Friends 객체
 data class Friends(
+    val pic: String,
     val nickname: String,
     var distance: Int
 )
@@ -208,6 +200,7 @@ class FriendListViewModel : ViewModel() {
                             Log.d("test", "" + document.data["username"])
                             data.add(
                                 Friends(
+                                    document.data["picture"].toString(),
                                     document.data["username"].toString(),
                                     distance.toInt()
                                 )
