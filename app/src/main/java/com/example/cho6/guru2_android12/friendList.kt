@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,8 +30,6 @@ class friendList : AppCompatActivity() {
 
     private val friendListViewModel: FriendListViewModel by viewModels()
 
-//    private val data= arrayListOf<Friends>()
-
     var myDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,18 +42,27 @@ class friendList : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         friendListViewModel.addMyLocation(latitude!!, longitude!!)
         friendListViewModel.findFriend(latitude!!, longitude!!)
 
 //        friendListViewModel.data.add(Friends("김채영", "247"))
 //        friendListViewModel.data.add(Friends("정지연", "256"))
 
+//        Log.d("test", "다시 : " + friendListViewModel.data)
+//        Log.d("test", "또다시 : " + "" + testList)
+
 
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = FriendListAdapter(friendListViewModel.data)
+        binding.recyclerView.adapter = FriendListAdapter(emptyList())
 
         myDialog = Dialog(this)
+
+        //관찰 UI 업데이트
+        friendListViewModel.friendLiveData.observe(this, Observer {
+            (binding.recyclerView.adapter as FriendListAdapter).setData(it as ArrayList<Friends>)
+        })
 
 
     }
@@ -132,9 +142,10 @@ class friendList : AppCompatActivity() {
 
 data class Friends(
     val nickname: String,
-    var distance: Int)
+    var distance: Int
+)
 
-class FriendListAdapter(private val myDataset: List<Friends>) :
+class FriendListAdapter(private var myDataset: List<Friends>) :
     RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder>() {
 
     class FriendListViewHolder(val binding: ItemFriendsBinding) :
@@ -155,17 +166,23 @@ class FriendListAdapter(private val myDataset: List<Friends>) :
     }
 
     override fun getItemCount() = myDataset.size
+
+    fun setData(newData: ArrayList<Friends>){
+        myDataset=newData
+        notifyDataSetChanged()
+    }
 }
 
 class FriendListViewModel : ViewModel() {
+    val friendLiveData = MutableLiveData<List<Friends>>()
     val db = Firebase.firestore
 
-    val data = arrayListOf<Friends>()
+    private val data = arrayListOf<Friends>()
 
     // 내 위치를 데이터베이스에 저장하기 위한 함수=>성공
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
-        val testla= hashMapOf("latitude" to myLatitude)
-        val testlo= hashMapOf("longitude" to myLongitude)
+        val testla = hashMapOf("latitude" to myLatitude)
+        val testlo = hashMapOf("longitude" to myLongitude)
 
         db.collection("users").document("tDqIF2oBx1bvUmCgaDwN")
             .set(testla, SetOptions.merge())
@@ -174,21 +191,31 @@ class FriendListViewModel : ViewModel() {
     }
 
     // 상대방의 위도와 경도로 거리를 계산하여 화면에 표시될 사람을 골라내는 함수
-    fun findFriend(myLatitude: Double, myLongitude: Double){
+    fun findFriend(myLatitude: Double, myLongitude: Double) {
         db.collection("users")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    if(document.id=="fGNgb3sYNOcl0ys5oqTC"){    //로그인한 본인 데이터가 아닌 다른사람들
-                        val yourLatitude=document.data["latitude"] as Double
-                        val yourLongitude=document.data["longitude"] as Double
-                        val distance : Double = getDistance(myLatitude, myLongitude, yourLatitude, yourLongitude)
-                        if(distance<=300){
-                            Log.d("test", ""+document.data["username"])
-                            data.add(Friends(document.data["username"].toString(), distance.toInt()))
+                    if (document.id == "fGNgb3sYNOcl0ys5oqTC") {    //로그인한 본인 데이터가 아닌 다른사람들
+                        val yourLatitude = document.data["latitude"] as Double
+                        val yourLongitude = document.data["longitude"] as Double
+                        val distance: Double =
+                            getDistance(myLatitude, myLongitude, yourLatitude, yourLongitude)
+                        if (distance <= 300) {
+                            Log.d("test", "" + document.data["username"])
+                            data.add(
+                                Friends(
+                                    document.data["username"].toString(),
+                                    distance.toInt()
+                                )
+                            )
+                            friendLiveData.value=data
                         }
                     }
                 }
+
+                Log.d("test", "" + data)
+
             }
             .addOnFailureListener { exception ->
                 Log.d("test", "Error getting documents: ", exception)
@@ -196,16 +223,16 @@ class FriendListViewModel : ViewModel() {
     }
 
     // 리사이클뷰에 추가하는 함수
-    fun addRecyclerView(friendlist : Friends){
-        data.add(friendlist)
+    fun addRecyclerView() {
+        //data.add()
     }
 
-    // 거리를 구하는 함수
-    fun getDistance(lat1:Double, lon1:Double, lat2:Double, lon2:Double): Double {
-        val dlat=lat1-lat2
-        val dlon=lon1-lon2
+    // 거리를 구하는 함수 => 성공
+    fun getDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val dlat = lat1 - lat2
+        val dlon = lon1 - lon2
 
-        val distance=sqrt(pow(dlat,2.0)+ pow(dlon,2.0))*100000
+        val distance = sqrt(pow(dlat, 2.0) + pow(dlon, 2.0)) * 100000
 
         return distance
     }
