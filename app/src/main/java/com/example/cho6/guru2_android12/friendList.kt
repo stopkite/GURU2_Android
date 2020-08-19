@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -57,6 +58,7 @@ class friendList : AppCompatActivity() {
 
 
     }
+
     // 한명을 위드미 했을 때 팝업
     fun ShowCallOnePop(v: View) {
         val textView: TextView
@@ -83,6 +85,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
+
     // 모두 위드미 했을 때 팝업
     fun ShowCallAllPop(v: View) {
         val textView: TextView
@@ -109,6 +112,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
+
     // 예를 눌렀을 때의 팝업
     fun ShowYesPop(v: View) {
         val butClose: Button
@@ -119,6 +123,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
+
     // 아니오를 눌렀을 때의 팝업
     fun ShowNoPop(v: View) {
         val butClose: Button
@@ -133,7 +138,7 @@ class friendList : AppCompatActivity() {
 
 // Friends 객체
 data class Friends(
-    val userid : String,
+    val userid: String,
     val pic: String,
     val nickname: String,
     var distance: Int
@@ -162,8 +167,8 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
 
     override fun getItemCount() = myDataset.size
 
-    fun setData(newData: ArrayList<Friends>){
-        myDataset=newData
+    fun setData(newData: ArrayList<Friends>) {
+        myDataset = newData
         notifyDataSetChanged()
     }
 }
@@ -175,49 +180,55 @@ class FriendListViewModel : ViewModel() {
 
     private val data = arrayListOf<Friends>()
 
+
     // 내 위치를 데이터베이스에 저장하기 위한 함수=>성공
     fun addMyLocation(myLatitude: Double, myLongitude: Double) {
-        val testla = hashMapOf("latitude" to myLatitude)
-        val testlo = hashMapOf("longitude" to myLongitude)
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val testla = hashMapOf("latitude" to myLatitude)
+            val testlo = hashMapOf("longitude" to myLongitude)
 
-        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN")
-            .set(testla, SetOptions.merge())
-        db.collection("users").document("tDqIF2oBx1bvUmCgaDwN")
-            .set(testlo, SetOptions.merge())
+            db.collection("users").document(user.uid)
+                .set(testla, SetOptions.merge())
+            db.collection("users").document(user.uid)
+                .set(testlo, SetOptions.merge())
+        }
     }
 
     // 상대방의 위도와 경도로 거리를 계산하여 화면에 표시될 사람을 골라내는 함수
     fun findFriend(myLatitude: Double, myLongitude: Double) {
-        db.collection("users")
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    if (document.id == "fGNgb3sYNOcl0ys5oqTC") {    //로그인한 본인 데이터가 아닌 다른사람들
-                        val yourLatitude = document.data["latitude"] as Double
-                        val yourLongitude = document.data["longitude"] as Double
-                        val distance: Double =
-                            getDistance(myLatitude, myLongitude, yourLatitude, yourLongitude)
-                        if (distance <= 300) {
-                            Log.d("test", "" + document.data["username"])
-                            data.add(
-                                Friends(
-                                    document.id,
-                                    document.data["picture"].toString(),
-                                    document.data["username"].toString(),
-                                    distance.toInt()
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+
+            db.collection("users")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        if (document.id != user.uid) {    //로그인한 본인 데이터가 아닌 다른사람들
+                            val yourLatitude = document.data["latitude"] as Double
+                            val yourLongitude = document.data["longitude"] as Double
+                            val distance: Double =
+                                getDistance(myLatitude, myLongitude, yourLatitude, yourLongitude)
+                            if (distance <= 300) {
+                                Log.d("test", "" + document.data["username"])
+                                data.add(
+                                    Friends(
+                                        document.id,
+                                        document.data["profileImageUrl"].toString(),
+                                        document.data["username"].toString(),
+                                        distance.toInt()
+                                    )
                                 )
-                            )
-                            friendLiveData.value=data
+                                friendLiveData.value = data
+                            }
                         }
                     }
                 }
-
-                Log.d("test", "" + data)
-
-            }
-            .addOnFailureListener { exception ->
-                Log.d("test", "Error getting documents: ", exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.d("test", "Error getting documents: ", exception)
+                }
+        }
     }
 
     // 거리를 구하는 함수 => 성공
