@@ -16,12 +16,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import java.lang.Math.pow
 import kotlin.math.sqrt
 
@@ -163,6 +165,7 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
         holder.binding.nickname.text = myDataset[position].nickname
         holder.binding.distance.text = myDataset[position].distance.toString()
+        Picasso.get().load(myDataset[position].pic).into(holder.binding.frienditempic)
     }
 
     override fun getItemCount() = myDataset.size
