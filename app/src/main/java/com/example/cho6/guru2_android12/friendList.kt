@@ -66,7 +66,7 @@ class friendList : AppCompatActivity() {
 
 
     }
-
+    // 한명을 위드미 했을 때 팝업
     fun ShowCallOnePop(v: View) {
         val textView: TextView
         val butClose: Button
@@ -92,7 +92,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
-
+    // 모두 위드미 했을 때 팝업
     fun ShowCallAllPop(v: View) {
         val textView: TextView
         val butClose: Button
@@ -118,7 +118,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
-
+    // 예를 눌렀을 때의 팝업
     fun ShowYesPop(v: View) {
         val butClose: Button
         myDialog?.setContentView(R.layout.call_ok)
@@ -128,7 +128,7 @@ class friendList : AppCompatActivity() {
         }
         myDialog!!.show()
     }
-
+    // 아니오를 눌렀을 때의 팝업
     fun ShowNoPop(v: View) {
         val butClose: Button
         myDialog?.setContentView(R.layout.call_fail)
@@ -140,11 +140,13 @@ class friendList : AppCompatActivity() {
     }
 }
 
+// Friends 객체
 data class Friends(
     val nickname: String,
     var distance: Int
 )
 
+// 리사이클러 뷰 어댑터
 class FriendListAdapter(private var myDataset: List<Friends>) :
     RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder>() {
 
@@ -173,6 +175,7 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
     }
 }
 
+// 정보 수정에 대한 모든 것의 클래스
 class FriendListViewModel : ViewModel() {
     val friendLiveData = MutableLiveData<List<Friends>>()
     val db = Firebase.firestore
@@ -220,11 +223,6 @@ class FriendListViewModel : ViewModel() {
             .addOnFailureListener { exception ->
                 Log.d("test", "Error getting documents: ", exception)
             }
-    }
-
-    // 리사이클뷰에 추가하는 함수
-    fun addRecyclerView() {
-        //data.add()
     }
 
     // 거리를 구하는 함수 => 성공
