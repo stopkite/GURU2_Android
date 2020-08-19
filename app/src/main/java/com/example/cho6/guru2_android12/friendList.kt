@@ -133,6 +133,7 @@ class friendList : AppCompatActivity() {
 
 // Friends 객체
 data class Friends(
+    val userid : String,
     val pic: String,
     val nickname: String,
     var distance: Int
@@ -200,6 +201,7 @@ class FriendListViewModel : ViewModel() {
                             Log.d("test", "" + document.data["username"])
                             data.add(
                                 Friends(
+                                    document.id,
                                     document.data["picture"].toString(),
                                     document.data["username"].toString(),
                                     distance.toInt()
