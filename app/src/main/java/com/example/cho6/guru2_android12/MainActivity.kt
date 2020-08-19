@@ -98,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 프로필 사진 생성(1) - 생성 조건 (?)
     var selectedPhotoUri: Uri? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -117,6 +118,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 프로필 사진 생성(2) - 파이어 스토어에 저장하기
     private fun uploadImageToFirebaseStorage(){
         if(selectedPhotoUri == null) return
 
@@ -132,16 +134,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    /*  private fun saveUserToFireDatabase(profileImageUrl: String){
-          val uid = FirebaseAuth.getInstance().uid ?:""
-          val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-
-          val user = userProfile(uid,username.text.toString(),profileImageUrl)
-          ref.setValue(user)
-              .addOnSuccessListener {
-
-              }
-      }*/
+    // 프로필 사진 생성(3) - 파이어 스토어 users에 저장하기
     private fun saveUserToFireDatabase(profileImageUrl: String){
         val uid = FirebaseAuth.getInstance().uid ?:""
         val ref = FirebaseFirestore.getInstance().collection("users")
@@ -157,4 +150,5 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+// 프로필 사진 생성(4) - 파이어베이스에 저장할 userProfile
 class userProfile(val uid:String, val username: String, val profileImageUrl: String)
