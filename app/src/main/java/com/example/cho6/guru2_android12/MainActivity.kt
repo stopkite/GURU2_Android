@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.d(TAG, "데이터베이스 실패") //db에 등록 실패여부를 알리는 Log
                             }
 
-                        // 's3.채팅 목록'으로 화면을 이동한다
+                        // 위드미 화면으로 이동 (withmefriendActivity)
                         val intent = Intent(this, withmefriendActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

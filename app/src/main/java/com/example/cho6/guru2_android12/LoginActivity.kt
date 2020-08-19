@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.d(TAG, "signInWithEmail:success") // 로그인 성공여부 확인 로그
 
 
-                        // s3.채팅 목록으로 화면 이동한다
+                        // 위드미 화면으로 이동 (withmefriendActivity)
                         val intent = Intent(this,withmefriendActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // 뒤에 있는 Activity를 지워준다.
                         startActivity(intent)
