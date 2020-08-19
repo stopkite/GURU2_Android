@@ -7,19 +7,25 @@
     android:background="#a6defe"
     tools:context=".LoginActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9A11B"/>
+
     // 이메일 입력 창
     <EditText
         android:id="@+id/login_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="250dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="login_email"
+        android:hint="이메일"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/withmeLogo"/>
 
     // 비밀번호 입력 창
     <EditText
@@ -29,7 +35,7 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="login_pwd"
+        android:hint="비밀번호"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,12 +44,27 @@
     // 로그인하기 버튼
     <Button
         android:id="@+id/login_button"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="login_button"
+        android:text="로그인"
+        android:textStyle="bold"
+        android:textColor="#F9A11B"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#FF5722"
+        android:background="@drawable/roundedbutton"
         app:layout_constraintTop_toBottomOf="@+id/login_pwd" />
+
+    <ImageView
+        android:id="@+id/withmeLogo"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@color/colorAccent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

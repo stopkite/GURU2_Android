@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="닉네임"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center_vertical"/>
 
@@ -44,15 +45,36 @@
         android:textSize="20dp"
         android:layout_gravity="center_vertical"/>
 
-    <Button
-        android:onClick="ShowCallOnePop"
-        android:id="@+id/withmeone"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="위드미"
-        android:background="#FFC107"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"/>
+<!--    <Button-->
+<!--        android:onClick="ShowCallOnePop"-->
+<!--        android:id="@+id/withmeone"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:text="위드미"-->
+<!--        android:background="#F9A11B"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginLeft="20dp"/>-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:onClick="ShowCallOnePop"
+            android:id="@+id/withmeone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:padding="0dp"
+            android:background="#ffffff"
+            android:src="@drawable/withmelogo"
+            android:scaleType="centerInside"/>
+
+    </RelativeLayout>
+
+
 
 
 </LinearLayout>

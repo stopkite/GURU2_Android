@@ -7,6 +7,11 @@
     android:background="#a6d8ff"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9A11B"/>
+
     // 사용자이름 등록 창
 
     // 이메일 주소 등록 창
@@ -19,11 +24,14 @@
 
     <Button
         android:id="@+id/join_button"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="#FF5722"
-        android:text="join_button"
+        android:background="@drawable/roundedbutton"
+        android:text="회원가입"
+        android:textStyle="bold"
+        android:textColor="#F9A11B"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="username"
+        android:hint="사용자 이름"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="email_area"
+        android:hint="이메일"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="password_area"
+        android:hint="비밀번호"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,27 +75,42 @@
 
     <Button
         android:id="@+id/login_button_main"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:background="#FF5722"
-        android:text="login_button"
+        android:background="@drawable/roundedbutton"
+        android:text="로그인"
+        android:textStyle="bold"
+        android:textColor="#F9A11B"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_button" />
 
-    <Button
+    <ImageButton
         android:id="@+id/select_profile_photo"
         android:layout_width="194dp"
         android:layout_height="182dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/select_profile_photo"
-        android:text="select photo"
+        android:src="@drawable/camera_icon"
+        android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/withmeLogo"/>
+
+    <ImageView
+        android:id="@+id/withmeLogo"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@color/colorAccent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/select_photo_imageview_register"

@@ -3,7 +3,7 @@
     android:layout_width="350dp"
     android:layout_height="200dp"
     android:layout_gravity="center"
-    android:background="#FFE2D5"
+    android:background="@drawable/roundedbutton"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,25 +13,34 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="요청 보내기"
-            android:textColor="#5A5A5A"
-            android:textSize="20dp"
-            android:layout_gravity="left"
-            android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/close_call_one"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginLeft="180dp"
-            android:background="#FFE2D5"
-            android:text="X"
-            android:textSize="20dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="요청 보내기"
+                android:textColor="#2C2C2C"
+                android:textSize="18dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/close_call_one"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:text="X"
+                android:textSize="20dp"
+                android:background="@color/invisible"/>
+
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 
@@ -76,7 +85,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="위드미 요청을 보내시겠습니까?"
             android:textSize="17dp" />
@@ -101,7 +110,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="예"
-            android:background="#FFE2D5"/>
+            android:background="@color/invisible"/>
 
         <View
             android:layout_width="2dp"
@@ -114,7 +123,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="아니오"
-            android:background="#FFE2D5"/>
+            android:background="@color/invisible"/>
 
     </LinearLayout>
 

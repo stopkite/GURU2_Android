@@ -11,15 +11,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="68dp"
-        android:background="#838383">
+        android:background="@color/maincolor">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/colorAccent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:src="@color/colorPrimary"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/colorPrimaryDark"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"/>
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#3F51B5">
+        android:layout_height="match_parent">
 
         <fragment
             android:layout_width="match_parent"
@@ -28,25 +54,21 @@
             tools:context=".MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
-        <TextView
+        <ImageButton
             android:id="@+id/withmeButton"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
+            android:background="@drawable/roundedbutton_orange"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="51dp"
-            android:background="#FF5722"
             android:gravity="center"
-            android:text="위드미 버튼" />
+            android:src="@drawable/withmelogo_white"
+            android:scaleType="centerInside"/>
 
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="#838383">
 
-    </LinearLayout>
 
 </LinearLayout>
