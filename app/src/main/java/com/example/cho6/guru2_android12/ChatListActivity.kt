@@ -62,7 +62,7 @@ class ChatListActivity : AppCompatActivity() {
                             UserItem(
                                 document.get("username").toString(),
                                 document.get("uid").toString(),
-                                document.get("profileImageUrl").toString()
+                                document.get("profileImageUrl").toString() //프로필 사진 생성(5) -불러오기
                             )
                         )
 

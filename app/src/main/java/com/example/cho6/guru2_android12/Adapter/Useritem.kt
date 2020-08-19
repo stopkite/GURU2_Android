@@ -17,6 +17,7 @@ class UserItem (val name:String, val uid:String, val profileImagUrl: String): It
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.name.text = name
 
+        // 프로필 사진 생성(6) -불러오기
         Picasso.get().load(profileImagUrl).into(viewHolder.itemView.imageview_new_message)
     }
 }
