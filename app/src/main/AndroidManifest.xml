@@ -18,7 +18,7 @@
             android:value="AIzaSyCQuhSN_lxC5P07BcfzmSNoWPja6y5ElOo"/>
 
         <activity android:name=".friendList" />
-        <activity android:name=".withmefriendActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
         <activity android:name=".ChatRoomActivity" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".withmefriendActivity">
 
         </activity>
 

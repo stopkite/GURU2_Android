@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                             }
 
                         // 's3.채팅 목록'으로 화면을 이동한다
-                        val intent = Intent(this, ChatListActivity::class.java)
+                        val intent = Intent(this, withmefriendActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
