@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setUserFalseOnFireDatabase(uid: String){
+    /*private fun setUserFalseOnFireDatabase(uid: String){
 
         val ref = FirebaseFirestore.getInstance().collection("users")
 
@@ -159,9 +159,9 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-    }
+    }*/
 
-    // 위드미 요청 서버 통신 함수 true 전환 (파라미터로 B의 "uid"를 받아온다)
+    /*// 위드미 요청 서버 통신 함수 true 전환 (파라미터로 B의 "uid"를 받아온다)
     private fun setUserTrueOnFireDatabase(uid: String){
 
         val ref = FirebaseFirestore.getInstance().collection("users")
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
             }
 
     }
-
+*/
 
 }
 
