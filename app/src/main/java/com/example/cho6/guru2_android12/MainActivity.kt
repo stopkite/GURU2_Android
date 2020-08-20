@@ -14,6 +14,7 @@ import com.example.cho6.guru2_android12.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupieViewHolder
@@ -147,34 +148,6 @@ class MainActivity : AppCompatActivity() {
             }
 
     }
-
-    /*private fun setUserFalseOnFireDatabase(uid: String){
-
-        val ref = FirebaseFirestore.getInstance().collection("users")
-
-        val user = userRequest(true)
-        ref.document(uid)
-            .set(user)
-            .addOnSuccessListener {
-
-            }
-
-    }*/
-
-    /*// 위드미 요청 서버 통신 함수 true 전환 (파라미터로 B의 "uid"를 받아온다)
-    private fun setUserTrueOnFireDatabase(uid: String){
-
-        val ref = FirebaseFirestore.getInstance().collection("users")
-
-        val user = userRequest(true)
-        ref.document(uid)
-            .set(user)
-            .addOnSuccessListener {
-
-            }
-
-    }
-*/
 
 }
 

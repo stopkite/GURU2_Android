@@ -129,7 +129,7 @@ class friendList : AppCompatActivity() {
             val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
 
-            //
+
         }
         myDialog!!.show()
     }
@@ -143,6 +143,9 @@ class friendList : AppCompatActivity() {
             myDialog!!.dismiss()
         }
         myDialog!!.show()
+
+        val intent = Intent(this, ChatListActivity::class.java)
+        startActivity(intent)
     }
 
     // 아니오를 눌렀을 때의 팝업
@@ -282,5 +285,32 @@ class FriendListViewModel : ViewModel() {
 
         return distance
     }
+
 }
 
+class userTF(){
+
+    val db = Firebase.firestore
+
+    // F -> T (기본 값 false)
+    fun setUserFalseOnFireDatabase(request: Boolean) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val turnFalse = hashMapOf(false to request)
+
+            db.collection("users").document(user.uid)
+                .set(turnFalse, SetOptions.merge())
+        }
+    }
+
+    // T -> F
+    fun setUserTrueOnFireDatabase(request: Boolean) {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            val turnTrue = hashMapOf(true to request)
+
+            db.collection("users").document(user.uid)
+                .set(turnTrue, SetOptions.merge())
+        }
+    }
+}
