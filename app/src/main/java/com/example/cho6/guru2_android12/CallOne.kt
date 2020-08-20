@@ -23,6 +23,8 @@ class CallOne : AppCompatActivity() {
 
         yes_call_one.setOnClickListener {
             finish()
+            val intent = Intent(this,ChatListActivity::class .java)
+            startActivity(intent)
             val callokpopup= Intent(this, CallOk::class.java)
             startActivity(callokpopup)
         }
