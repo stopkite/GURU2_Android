@@ -71,22 +71,14 @@ class friendList : AppCompatActivity() {
     }
 
     // 한명을 위드미 했을 때 팝업
-    fun ShowCallOnePop(v: View, data:Friends) {
-        Log.d("gotest", "1"+data)
+    fun ShowCallOnePop(v: View) {
 
         myDialog?.setContentView(R.layout.call_one)
 
-        if (myDialog==null)
-        {
-            Log.d("gotest", "myDialog가 null이다.")
-        }
-
         val butClose : Button = myDialog?.findViewById(R.id.close_call_one) as Button
         val textView:TextView = myDialog?.findViewById(R.id.nickname_call_one) as TextView
-        Log.d("gotest", "2"+data)
         val butYes:Button = myDialog?.findViewById(R.id.yes_call_one) as Button
         val butNo:Button = myDialog?.findViewById(R.id.no_call_one) as Button
-        textView.text=data.nickname
         butClose.setOnClickListener {
             myDialog!!.dismiss()
         }
@@ -101,7 +93,6 @@ class friendList : AppCompatActivity() {
             ShowYesPop(okWindow)
 
             //정보 전달 테스트
-            Log.d("gotest", "3"+data)
 
             // 채팅방으로 정보 전달
 //            val nextIntent= Intent(this, ChatRoomActivity::class.java)
@@ -199,14 +190,14 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
 
         // 버튼을 누르면 현재 누른 아이템이 몇번째 아이템인지 반환
         // goChatData에 현재 위치의 Friends 데이터 저장
-        holder.binding.withmeone.setOnClickListener {
-            val pos: Int = holder.getAdapterPosition()
-            val startPopup: ImageButton = holder.binding.withmeone
-            Log.d("gotest", "4입니다")
-
-            friendList().ShowCallOnePop(startPopup, myDataset[pos]!!)
-
-        }
+//        holder.binding.withmeone.setOnClickListener {
+//            val pos: Int = holder.getAdapterPosition()
+//            val startPopup: ImageButton = holder.binding.withmeone
+//            Log.d("gotest", "4입니다")
+//
+//            friendList().ShowCallOnePop(startPopup, myDataset[pos]!!)
+//
+//        }
 
 
     }
@@ -255,7 +246,7 @@ class FriendListViewModel : ViewModel() {
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        if (document.id != user.uid) {    //로그인한 본인 데이터가 아닌 다른사람들
+                        if (document.id != "MMJgMbZExzXNI5oNMsbam9GGgZJ2") {    //로그인한 본인 데이터가 아닌 다른사람들
                             val yourLatitude = document.data["latitude"] as Double 
                             val yourLongitude = document.data["longitude"] as Double
                             val distance: Double =
@@ -292,5 +283,11 @@ class FriendListViewModel : ViewModel() {
 
         return distance
     }
+
+    //데이터 베이스에 true false 전환해서 팝업 요청하기
+    fun goSign(userUid:String){
+
+    }
+
 }
 
