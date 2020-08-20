@@ -17,12 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@color/colorAccent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"/>
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:src="@color/colorAccent"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginLeft="20dp"/>-->
 
             <ImageView
                 android:layout_width="150dp"
@@ -31,13 +31,13 @@
                 android:scaleType="center"
                 android:layout_centerInParent="true"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@color/colorPrimaryDark"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"/>
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:src="@color/colorPrimaryDark"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginRight="20dp"/>-->
 
         </RelativeLayout>
 

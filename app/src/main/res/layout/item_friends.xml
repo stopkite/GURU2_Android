@@ -11,6 +11,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:civ_border_width="2dp"
+        android:background="@drawable/mypage_icon1"
+        android:scaleType="centerInside"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <TextView
@@ -20,44 +22,43 @@
         android:text="닉네임"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_gravity="center_vertical"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="친구와의 거리 : "
-        android:textSize="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center_vertical"/>
-
-    <TextView
-        android:id="@+id/distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="247"
-        android:textSize="20dp"
-        android:layout_gravity="center_vertical"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="m"
-        android:textSize="20dp"
-        android:layout_gravity="center_vertical"/>
-
-<!--    <Button-->
-<!--        android:onClick="ShowCallOnePop"-->
-<!--        android:id="@+id/withmeone"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:text="위드미"-->
-<!--        android:background="#F9A11B"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:layout_marginLeft="20dp"/>-->
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toLeftOf="@id/withmeone"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="친구와의 거리 : "
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="247"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="m"
+                android:textSize="20dp"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
 
         <ImageButton
             android:onClick="ShowCallOnePop"
@@ -66,7 +67,7 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="0dp"
             android:padding="0dp"
             android:background="#ffffff"
             android:src="@drawable/withmelogo"

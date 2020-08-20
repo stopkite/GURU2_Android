@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/border"
     android:layout_marginRight="50dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="상대"></TextView>
+        android:layout_margin="22dp"
+        android:text="상대"
+        android:textSize="20dp"
+        android:textStyle="bold"></TextView>
 
     <TextView
         android:id="@+id/left_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="chat_text">
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="22dp"
+        android:layout_marginRight="22dp"
+        android:text="chat_text"
+        android:textSize="20dp">
 
     </TextView>
 

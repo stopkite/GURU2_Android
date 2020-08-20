@@ -4,33 +4,28 @@
     android:id="@+id/chat_profile"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:layout_marginTop="16dp"
-    android:background="@android:color/darker_gray"
+    android:layout_marginTop="15dp"
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageview_new_message"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="25dp"
+        android:layout_gravity="center"
         app:civ_border_width="2dp"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:srcCompat="@android:drawable/btn_dialog"
+        android:background="@drawable/mypage_icon1"
+        android:scaleType="centerInside"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
         android:text="name"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="20dp"
         android:textStyle="bold">
 
     </TextView>
