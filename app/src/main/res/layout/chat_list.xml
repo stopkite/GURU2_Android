@@ -14,8 +14,7 @@
         android:layout_marginLeft="25dp"
         android:layout_gravity="center"
         app:civ_border_width="2dp"
-        app:srcCompat="@android:drawable/btn_dialog"
-        android:scaleType="centerInside"/>
+        app:srcCompat="@android:drawable/btn_dialog" />
 
     <TextView
         android:id="@+id/name"
