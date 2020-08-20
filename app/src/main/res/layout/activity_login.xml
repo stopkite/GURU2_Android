@@ -59,9 +59,9 @@
     <ImageView
         android:id="@+id/withmeLogo"
         android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:src="@color/colorAccent"
-        android:layout_marginTop="25dp"
+        android:layout_height="150dp"
+        android:src="@drawable/mainlogo_big"
+        android:layout_marginTop="15dp"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
