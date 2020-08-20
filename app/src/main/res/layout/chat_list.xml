@@ -15,7 +15,6 @@
         android:layout_gravity="center"
         app:civ_border_width="2dp"
         app:srcCompat="@android:drawable/btn_dialog"
-        android:background="@drawable/mypage_icon1"
         android:scaleType="centerInside"/>
 
     <TextView
