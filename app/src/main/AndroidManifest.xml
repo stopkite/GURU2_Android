@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cho6.guru2_android12">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,10 +13,21 @@
         android:roundIcon="@mipmap/withme_orange_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CallFail"
+            android:theme="@style/Theme.Dialog" />
+        <activity
+            android:name=".CallOk"
+            android:theme="@style/Theme.Dialog" />
+        <activity
+            android:name=".CallAll"
+            android:theme="@style/Theme.Dialog" />
+        <activity
+            android:name=".CallOne"
+            android:theme="@style/Theme.Dialog" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQuhSN_lxC5P07BcfzmSNoWPja6y5ElOo"/>
+            android:value="AIzaSyCQuhSN_lxC5P07BcfzmSNoWPja6y5ElOo" />
 
         <activity android:name=".friendList" />
         <activity android:name=".MainActivity">
@@ -26,23 +37,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ChatRoomActivity" />
         <activity android:name=".ChatListActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".withmefriendActivity">
-
-        </activity>
-
-        <activity android:name=".restaurant_list"></activity>
-        <activity android:name=".nearsearch" />
+        <activity android:name=".withmefriendActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
-        <activity android:name=".Find_RestaurantActivity">
-        </activity>
     </application>
 
 </manifest>

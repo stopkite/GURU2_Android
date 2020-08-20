@@ -1,20 +1,19 @@
 package com.example.cho6.guru2_android12
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.annotation.ContentView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -23,13 +22,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.chat_list.view.*
+import kotlinx.android.synthetic.main.activity_friend_list.*
 import java.lang.Math.pow
 import kotlin.math.sqrt
 
@@ -57,99 +55,19 @@ class friendList : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = FriendListAdapter(emptyList())
 
-        myDialog = Dialog(this)
-        if (myDialog==null)
-        {
-            Log.d("gotest", "myDialog가 onCreate에서 null이다.")
-        }
 
         //관찰 UI 업데이트
         friendListViewModel.friendLiveData.observe(this, Observer {
             (binding.recyclerView.adapter as FriendListAdapter).setData(it as ArrayList<Friends>)
         })
 
-
-    }
-
-    // 한명을 위드미 했을 때 팝업
-    fun ShowCallOnePop(v: View) {
-
-        myDialog?.setContentView(R.layout.call_one)
-
-        val butClose : Button = myDialog?.findViewById(R.id.close_call_one) as Button
-        val textView:TextView = myDialog?.findViewById(R.id.nickname_call_one) as TextView
-        val butYes:Button = myDialog?.findViewById(R.id.yes_call_one) as Button
-        val butNo:Button = myDialog?.findViewById(R.id.no_call_one) as Button
-        butClose.setOnClickListener {
-            myDialog!!.dismiss()
+        callAllButton.setOnClickListener {
+            val callallpopup= Intent(this, CallAll::class.java)
+            callallpopup.apply {
+                this.putExtra("size", friendListViewModel.getData().size)
+            }
+            startActivity(callallpopup)
         }
-        butNo.setOnClickListener {
-            myDialog!!.dismiss()
-            val failedWindow: Button = myDialog?.findViewById(R.id.no_call_one)!!
-            ShowNoPop(failedWindow)
-        }
-        butYes.setOnClickListener {
-            myDialog!!.dismiss()
-            val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
-            ShowYesPop(okWindow)
-        }
-        myDialog!!.show()
-
-
-    }
-
-    // 모두 위드미 했을 때 팝업
-    fun ShowCallAllPop(v: View) {
-        val textView: TextView
-        val butClose: Button
-        val butNo: Button
-        val butYes: Button
-        myDialog?.setContentView(R.layout.call_all)
-        textView = myDialog?.findViewById(R.id.nickname_call_one) as TextView
-        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
-        butYes = myDialog?.findViewById(R.id.yes_call_one) as Button
-        butNo = myDialog?.findViewById(R.id.no_call_one) as Button
-        butClose.setOnClickListener {
-            myDialog!!.dismiss()
-        }
-        butNo.setOnClickListener {
-            myDialog!!.dismiss()
-            val failedWindow: Button = myDialog?.findViewById(R.id.no_call_one)!!
-            ShowNoPop(failedWindow)
-        }
-        butYes.setOnClickListener {
-            myDialog!!.dismiss()
-            val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
-            ShowYesPop(okWindow)
-        }
-        myDialog!!.show()
-    }
-
-    // 예를 눌렀을 때의 팝업
-    fun ShowYesPop(v: View) {
-        val butClose: Button
-        myDialog?.setContentView(R.layout.call_ok)
-        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
-        butClose.setOnClickListener {
-            myDialog!!.dismiss()
-        }
-        myDialog!!.show()
-
-        // 채팅 방으로 전환 (여기어디서 true false를 해야 ㅠㅠㅠ )
-        val intent = Intent(this,ChatListActivity::class .java)
-        startActivity(intent)
-
-    }
-
-    // 아니오를 눌렀을 때의 팝업
-    fun ShowNoPop(v: View) {
-        val butClose: Button
-        myDialog?.setContentView(R.layout.call_fail)
-        butClose = myDialog?.findViewById(R.id.close_call_one) as Button
-        butClose.setOnClickListener {
-            myDialog!!.dismiss()
-        }
-        myDialog!!.show()
     }
 }
 
@@ -186,14 +104,18 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
 
         // 버튼을 누르면 현재 누른 아이템이 몇번째 아이템인지 반환
         // goChatData에 현재 위치의 Friends 데이터 저장
-//        holder.binding.withmeone.setOnClickListener {
-//            val pos: Int = holder.getAdapterPosition()
-//            val startPopup: ImageButton = holder.binding.withmeone
-//            Log.d("gotest", "4입니다")
-//
-//            friendList().ShowCallOnePop(startPopup, myDataset[pos]!!)
-//
-//        }
+        holder.binding.withmeone.setOnClickListener {
+            val startPopup: ImageButton = holder.binding.withmeone
+            val context: Context = startPopup.getContext()
+            val pos: Int = holder.getAdapterPosition()
+
+            val callonepopup= Intent(context, CallOne::class.java)
+            val bundle = Bundle()
+            bundle.putString("usernickname", myDataset[pos].nickname)
+            bundle.putString("useruid", myDataset[pos].userid)
+            callonepopup.putExtras(bundle)
+            context.startActivity(callonepopup)
+        }
 
 
     }
@@ -214,6 +136,7 @@ class FriendListViewModel : ViewModel() {
     private val data = arrayListOf<Friends>()
 
     fun getData():ArrayList<Friends>{
+        friendLiveData.value = data
         return data
     }
 
@@ -242,7 +165,7 @@ class FriendListViewModel : ViewModel() {
                 .get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        if (document.id != "MMJgMbZExzXNI5oNMsbam9GGgZJ2") {    //로그인한 본인 데이터가 아닌 다른사람들
+                        if (document.id != user.uid) {    //로그인한 본인 데이터가 아닌 다른사람들
                             val yourLatitude = document.data["latitude"] as Double 
                             val yourLongitude = document.data["longitude"] as Double
                             val distance: Double =

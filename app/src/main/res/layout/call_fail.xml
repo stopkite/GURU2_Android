@@ -28,7 +28,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/close_call_one"
+                android:id="@+id/close_call_fail"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
