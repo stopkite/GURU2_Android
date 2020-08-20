@@ -1,6 +1,7 @@
 package com.example.cho6.guru2_android12
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -12,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.annotation.ContentView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -21,10 +23,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.chat_list.view.*
 import java.lang.Math.pow
 import kotlin.math.sqrt
 
@@ -133,6 +137,8 @@ class friendList : AppCompatActivity() {
             myDialog!!.dismiss()
             val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
+
+            //
         }
         myDialog!!.show()
     }
@@ -272,6 +278,8 @@ class FriendListViewModel : ViewModel() {
                 .addOnFailureListener { exception ->
                     Log.d("test", "Error getting documents: ", exception)
                 }
+
+
         }
     }
 
@@ -285,3 +293,4 @@ class FriendListViewModel : ViewModel() {
         return distance
     }
 }
+

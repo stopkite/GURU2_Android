@@ -89,6 +89,9 @@ class ChatListActivity : AppCompatActivity() {
             startActivity(intent)
         }
         recycle_view_list.adapter = adapter
+
     }
+
+
 
 }
