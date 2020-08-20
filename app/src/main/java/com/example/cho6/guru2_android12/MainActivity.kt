@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                         uploadImageToFirebaseStorage()
 
                         val uid = FirebaseAuth.getInstance().uid ?: ""  // 등록할 사용자 id
-                        val user = User(uid, username.text.toString(),false)  // 등록할 사용자이름 변수
+                        val user = User(uid, username.text.toString())  // 등록할 사용자이름 변수
 
                         // 데이터베이스에 유저 정보를 넣어줘야 한다. -> Model 파일 User.kt 생성
                         // 이 곳에서 데이터 베이스에 정보를 넣는다
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?:""
         val ref = FirebaseFirestore.getInstance().collection("users")
 
-        val user = userProfile(uid,username.text.toString(),profileImageUrl)
+        val user = userProfile(uid,username.text.toString(),profileImageUrl,false)
         ref.document(uid)
             .set(user)
             .addOnSuccessListener {
@@ -148,7 +148,38 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun setUserFalseOnFireDatabase(uid: String){
+
+        val ref = FirebaseFirestore.getInstance().collection("users")
+
+        val user = userRequest(true)
+        ref.document(uid)
+            .set(user)
+            .addOnSuccessListener {
+
+            }
+
+    }
+
+    // 위드미 요청 서버 통신 함수 true 전환 (파라미터로 B의 "uid"를 받아온다)
+    private fun setUserTrueOnFireDatabase(uid: String){
+
+        val ref = FirebaseFirestore.getInstance().collection("users")
+
+        val user = userRequest(true)
+        ref.document(uid)
+            .set(user)
+            .addOnSuccessListener {
+
+            }
+
+    }
+
+
 }
 
 // 프로필 사진 생성(4) - 파이어베이스에 저장할 userProfile
-class userProfile(val uid:String, val username: String, val profileImageUrl: String)
+class userProfile(val uid:String, val username: String, val profileImageUrl: String, val request:Boolean)
+
+class userRequest(val request: Boolean)
+
