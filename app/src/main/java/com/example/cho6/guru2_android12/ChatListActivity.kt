@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
@@ -39,6 +40,8 @@ class ChatListActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //docRequestSign().signTurnTrue(false)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list) // 's3.채팅 목록'을 위한 xml
 
@@ -90,8 +93,13 @@ class ChatListActivity : AppCompatActivity() {
         }
         recycle_view_list.adapter = adapter
 
+        //signTurnTrue(myUid.toString())
     }
 
 
 
+
+
+
 }
+

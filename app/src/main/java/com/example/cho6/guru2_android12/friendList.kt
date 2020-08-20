@@ -25,6 +25,7 @@ import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
@@ -91,18 +92,10 @@ class friendList : AppCompatActivity() {
             myDialog!!.dismiss()
             val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
-
-            //정보 전달 테스트
-
-            // 채팅방으로 정보 전달
-//            val nextIntent= Intent(this, ChatRoomActivity::class.java)
-//            nextIntent.apply {
-//                this.putExtra("useruid", friendListViewModel.)  //이걸 연구해야함
-//            }
-//            startActivity(nextIntent)
-
         }
         myDialog!!.show()
+
+
     }
 
     // 모두 위드미 했을 때 팝업
@@ -128,8 +121,6 @@ class friendList : AppCompatActivity() {
             myDialog!!.dismiss()
             val okWindow: Button = myDialog?.findViewById(R.id.yes_call_one)!!
             ShowYesPop(okWindow)
-
-            //
         }
         myDialog!!.show()
     }
@@ -143,6 +134,11 @@ class friendList : AppCompatActivity() {
             myDialog!!.dismiss()
         }
         myDialog!!.show()
+
+        // 채팅 방으로 전환 (여기어디서 true false를 해야 ㅠㅠㅠ )
+        val intent = Intent(this,ChatListActivity::class .java)
+        startActivity(intent)
+
     }
 
     // 아니오를 눌렀을 때의 팝업
@@ -284,10 +280,13 @@ class FriendListViewModel : ViewModel() {
         return distance
     }
 
-    //데이터 베이스에 true false 전환해서 팝업 요청하기
+    //데이터 베이스에 true false 전환해서 팝업 요청하기(채영 도전!!!!!!!)
     fun goSign(userUid:String){
 
     }
 
 }
+
+
+
 
