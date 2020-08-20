@@ -56,5 +56,10 @@ class LoginActivity : AppCompatActivity() {
                 }
 
         }
+
+        back_to_register_textview.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
