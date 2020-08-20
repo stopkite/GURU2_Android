@@ -60,7 +60,7 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:onClick="ShowCallOne"
+            android:onClick="ShowCallOnePop"
             android:id="@+id/withmeone"
             android:layout_width="50dp"
             android:layout_height="50dp"
