@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                         uploadImageToFirebaseStorage()
 
                         val uid = FirebaseAuth.getInstance().uid ?: ""  // 등록할 사용자 id
-                        val user = User(uid, username.text.toString())  // 등록할 사용자이름 변수
+                        val user = User(uid, username.text.toString(),false)  // 등록할 사용자이름 변수
 
                         // 데이터베이스에 유저 정보를 넣어줘야 한다. -> Model 파일 User.kt 생성
                         // 이 곳에서 데이터 베이스에 정보를 넣는다

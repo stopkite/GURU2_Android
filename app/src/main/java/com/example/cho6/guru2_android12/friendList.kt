@@ -240,10 +240,10 @@ class FriendListViewModel : ViewModel() {
                 .addOnSuccessListener { result ->
                     for (document in result) {
                         if (document.id != user.uid) {    //로그인한 본인 데이터가 아닌 다른사람들
-                            val yourLatitude = document.data["latitude"] as Double
+                            val yourLatitude = document.data["latitude"] as Double 
                             val yourLongitude = document.data["longitude"] as Double
                             val distance: Double =
-                                getDistance(myLatitude, myLongitude, yourLatitude, yourLongitude)
+                                getDistance(myLatitude, myLongitude, yourLatitude.toDouble(), yourLongitude)
                             if (distance <= 300) {
                                 Log.d("test", "" + document.data["username"])
                                 data.add(
