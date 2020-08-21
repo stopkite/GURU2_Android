@@ -62,9 +62,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_chat"
+        android:background="@drawable/chat_list_rounded"
         android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.414"
@@ -93,7 +94,6 @@
             android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
             android:textSize="20dp" />
 
     </RelativeLayout>
