@@ -79,6 +79,13 @@ class ChatListActivity : AppCompatActivity() {
                 Log.w(TAG, "Error getting documents.", exception)
             }
 
+        //뒤로가기버튼(위드미로)
+        go_to_withme_button.setOnClickListener{
+
+            val intent = Intent(this,withmefriendActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // 's4.채팅방' 화면으로 이동하기 위한 함수
         adapter.setOnItemClickListener { item, view ->
@@ -93,7 +100,6 @@ class ChatListActivity : AppCompatActivity() {
         }
         recycle_view_list.adapter = adapter
 
-        //signTurnTrue(myUid.toString())
     }
 
 

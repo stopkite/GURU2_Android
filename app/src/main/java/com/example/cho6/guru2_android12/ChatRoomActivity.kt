@@ -1,6 +1,7 @@
 // s4.채팅방 화면
 package com.example.cho6.guru2_android12
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.activity_chat_room.*
 
 class ChatRoomActivity : AppCompatActivity() {
@@ -110,6 +112,12 @@ class ChatRoomActivity : AppCompatActivity() {
             editText.setText("")    // 메세지를 보낸 뒤 초기화
 
 
+        }
+
+        go_to_chat_list_button.setOnClickListener{
+
+            val intent = Intent(this,ChatListActivity::class.java)
+            startActivity(intent)
         }
     }
 

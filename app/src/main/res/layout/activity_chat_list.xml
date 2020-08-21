@@ -41,12 +41,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/go_to_withme_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/back_icon"
-                android:scaleType="centerInside"
+                android:layout_marginLeft="10dp"
                 android:background="@color/invisible"
-                android:layout_marginLeft="10dp"/>
+                android:scaleType="centerInside"
+                android:src="@drawable/back_icon" />
 
             <TextView
                 android:layout_width="wrap_content"
