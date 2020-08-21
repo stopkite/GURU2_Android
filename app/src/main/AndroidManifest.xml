@@ -13,8 +13,10 @@
         android:roundIcon="@mipmap/withme_orange_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".deacceptCall"></activity>
-        <activity android:name=".acceptPleasePop" />
+        <activity android:name=".deacceptCall"
+            android:theme="@style/Theme.Dialog" />
+        <activity android:name=".acceptPleasePop"
+            android:theme="@style/Theme.Dialog"/>
         <activity
             android:name=".CallFail"
             android:theme="@style/Theme.Dialog" />

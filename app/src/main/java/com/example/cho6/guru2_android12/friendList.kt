@@ -188,8 +188,6 @@ class FriendListViewModel : ViewModel() {
                 .addOnFailureListener { exception ->
                     Log.d("test", "Error getting documents: ", exception)
                 }
-
-
         }
     }
 
@@ -202,7 +200,6 @@ class FriendListViewModel : ViewModel() {
 
         return distance
     }
-
 }
 
 
