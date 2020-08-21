@@ -68,7 +68,7 @@ class CalloneViewModel : ViewModel(){
             db.collection("users").document(otherUid)
                 .set(agreeplease, SetOptions.merge())
             //=> 상대방의 요청한 사람 데이터에 내 데이터 저장하기
-            val
+
 
         }
 
