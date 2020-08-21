@@ -81,6 +81,8 @@ class ChatRoomActivity : AppCompatActivity() {
 
         val myRef_list: DatabaseReference = database.getReference("message-user-List")
 
+        // 채팅방 입력 메세지 전송 (Real time 데이터에 저장)
+        // 입력 메세지가 나에게도 저장됨과 동시에 실시간으로 상대에게도 저장이 된다.
         button.setOnClickListener {
 
             val message: String = editText.text.toString()  // 채팅방에 작성될 메세지 변수
@@ -92,7 +94,7 @@ class ChatRoomActivity : AppCompatActivity() {
                 System.currentTimeMillis(),
                 "나"
             )
-            myRef.child(myUid.toString()).child(yourUid.toString()).push().setValue(chat)
+            myRef.child(myUid.toString()).child(yourUid.toString()).push().setValue(chat) // 나의 uid에 대화 저장
 
             val chat_get = ChatNewModel(
                 yourUid.toString(),
@@ -101,15 +103,16 @@ class ChatRoomActivity : AppCompatActivity() {
                 System.currentTimeMillis(),
                 "상대"
             )
-            myRef.child(yourUid.toString()).child(myUid.toString()).push().setValue(chat_get)
+            myRef.child(yourUid.toString()).child(myUid.toString()).push().setValue(chat_get) // 상대 uid에 대화 저장
 
-            myRef_list.child(myUid.toString()).child(yourUid.toString()).setValue(chat)
+            myRef_list.child(myUid.toString()).child(yourUid.toString()).setValue(chat) // 동시에 나의 uid에 대화 저장
 
             editText.setText("")    // 메세지를 보낸 뒤 초기화
 
 
         }
 
+        // 뒤로가기 버튼(채팅 목록)
         go_to_chat_list_button.setOnClickListener{
 
             val intent = Intent(this,

@@ -1,7 +1,6 @@
 //s4.채팅목록 화면
 package com.example.cho6.guru2_android12.Activity
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
