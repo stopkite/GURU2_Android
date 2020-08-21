@@ -1,18 +1,11 @@
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Adapter
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
-import androidx.activity.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.call_all.*
+import com.example.cho6.guru2_android12.Activity.ChatListActivity
+import com.example.cho6.guru2_android12.R
 import kotlinx.android.synthetic.main.call_one.*
 
 // 한사람을 위드미 했을 때 팝업
@@ -35,7 +28,8 @@ class CallOne : AppCompatActivity() {
             //현재 팝업 닫고
             finish()
             // 채팅 리스트 화면으로 전환
-            val intent = Intent(this,ChatListActivity::class .java)
+            val intent = Intent(this,
+                ChatListActivity::class .java)
             startActivity(intent)
             // 요청완료 팝업 실행 요청
             val callokpopup= Intent(this, CallOk::class.java)

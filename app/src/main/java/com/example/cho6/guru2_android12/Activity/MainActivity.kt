@@ -1,27 +1,19 @@
 // s1.메인 화면
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Activity
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.core.view.drawToBitmap
 import com.example.cho6.guru2_android12.Model.User
+import com.example.cho6.guru2_android12.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.chat_list.view.*
 import java.util.*
 
 
@@ -94,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 프로필 사진 생성(1) - 생성 조건 (?)
+    // 프로필 사진 생성(1) - 생성 조건
     var selectedPhotoUri: Uri? = null
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -135,7 +127,12 @@ class MainActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?:""
         val ref = FirebaseFirestore.getInstance().collection("users")
 
-        val user = userProfile(uid,username.text.toString(),profileImageUrl,false)
+        val user = userProfile(
+            uid,
+            username.text.toString(),
+            profileImageUrl,
+            false
+        )
         ref.document(uid)
             .set(user)
             .addOnSuccessListener {

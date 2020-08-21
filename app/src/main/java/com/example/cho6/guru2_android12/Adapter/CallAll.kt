@@ -1,10 +1,11 @@
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Adapter
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cho6.guru2_android12.Activity.ChatListActivity
+import com.example.cho6.guru2_android12.R
 import kotlinx.android.synthetic.main.call_all.*
-import kotlinx.android.synthetic.main.call_one.*
 
 // 친구목록에 있는 모든사람에게 위드미 요청을 보냈을 때
 class CallAll : AppCompatActivity() {
@@ -23,7 +24,8 @@ class CallAll : AppCompatActivity() {
             //현재 팝업 닫고
             finish()
             // 채팅 리스트 화면으로 전환
-            val intent = Intent(this,ChatListActivity::class .java)
+            val intent = Intent(this,
+                ChatListActivity::class .java)
             startActivity(intent)
             // 요청완료 팝업 실행 요청
             val callokpopup= Intent(this, CallOk::class.java)

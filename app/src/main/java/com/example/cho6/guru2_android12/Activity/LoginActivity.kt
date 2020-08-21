@@ -1,15 +1,14 @@
 //s2.로그인 화면
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Activity
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.cho6.guru2_android12.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -37,7 +36,8 @@ class LoginActivity : AppCompatActivity() {
 
 
                         // 위드미 화면으로 이동 (withmefriendActivity)
-                        val intent = Intent(this,withmefriendActivity::class.java)
+                        val intent = Intent(this,
+                            withmefriendActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // 뒤에 있는 Activity를 지워준다.
                         startActivity(intent)
 
@@ -57,8 +57,10 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        // 화면 뒤로 가기 버튼(s1.'회원 가입'으로 이동)
         back_to_register_textview.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,
+                MainActivity::class.java)
             startActivity(intent)
         }
     }

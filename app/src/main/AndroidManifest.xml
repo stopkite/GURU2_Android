@@ -14,34 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CallFail"
+            android:name=".Adapter.CallFail"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".CallOk"
+            android:name=".Adapter.CallOk"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".CallAll"
+            android:name=".Adapter.CallAll"
             android:theme="@style/Theme.Dialog" />
         <activity
-            android:name=".CallOne"
+            android:name=".Adapter.CallOne"
             android:theme="@style/Theme.Dialog" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD9afDd5NytwxJJv2dJFJi0CiQPvixnvow" />
 
-        <activity android:name=".friendList" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Adapter.friendList" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatRoomActivity" />
-        <activity android:name=".ChatListActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".withmefriendActivity" />
+        <activity android:name=".Activity.ChatRoomActivity" />
+        <activity android:name=".Activity.ChatListActivity" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.withmefriendActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

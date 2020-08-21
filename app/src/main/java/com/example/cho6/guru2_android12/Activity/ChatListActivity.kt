@@ -1,34 +1,20 @@
-// s3. 채팅 목록
-package com.example.cho6.guru2_android12
+//s4.채팅목록 화면
+package com.example.cho6.guru2_android12.Activity
 
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.system.Os.remove
 import android.util.Log
-import android.widget.EditText
-import androidx.core.view.OneShotPreDrawListener.add
-import com.example.cho6.guru2_android12.Adapter.ChatLeftYou
-import com.example.cho6.guru2_android12.Adapter.ChatRightMe
 import com.example.cho6.guru2_android12.Adapter.UserItem
-import com.example.cho6.guru2_android12.ChatRoomActivity
-import com.example.cho6.guru2_android12.Model.ChatNewModel
+import com.example.cho6.guru2_android12.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.activity_chat_list.*
-import kotlinx.android.synthetic.main.activity_chat_room.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.chat_left_you.*
 
 class ChatListActivity : AppCompatActivity() {
 
@@ -82,7 +68,8 @@ class ChatListActivity : AppCompatActivity() {
         //뒤로가기버튼(위드미로)
         go_to_withme_button.setOnClickListener{
 
-            val intent = Intent(this,withmefriendActivity::class.java)
+            val intent = Intent(this,
+                withmefriendActivity::class.java)
             startActivity(intent)
         }
 

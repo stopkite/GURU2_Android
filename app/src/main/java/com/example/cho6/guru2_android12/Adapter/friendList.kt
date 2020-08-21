@@ -1,29 +1,26 @@
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Adapter
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cho6.guru2_android12.Adapter.CallAll
+import com.example.cho6.guru2_android12.Adapter.CallOne
+import com.example.cho6.guru2_android12.R
 import com.example.cho6.guru2_android12.databinding.ActivityFriendListBinding
 import com.example.cho6.guru2_android12.databinding.ItemFriendsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
@@ -53,7 +50,8 @@ class friendList : AppCompatActivity() {
         friendListViewModel.findFriend(latitude!!, longitude!!)     // 300m안에 있는 사람을 찾아서 친구목록에 추가
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = FriendListAdapter(emptyList())
+        binding.recyclerView.adapter =
+            FriendListAdapter(emptyList())
 
         // 관찰 UI 업데이트
         friendListViewModel.friendLiveData.observe(this, Observer {
@@ -90,10 +88,12 @@ class FriendListAdapter(private var myDataset: List<Friends>) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FriendListAdapter.FriendListViewHolder {
+    ): FriendListViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_friends, parent, false)
-        return FriendListViewHolder(ItemFriendsBinding.bind(view))
+        return FriendListViewHolder(
+            ItemFriendsBinding.bind(view)
+        )
     }
 
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {

@@ -1,7 +1,8 @@
-package com.example.cho6.guru2_android12
+package com.example.cho6.guru2_android12.Adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cho6.guru2_android12.R
 import kotlinx.android.synthetic.main.call_fail.*
 
 // CallOne 또는 CallAll 팝업에서 예를 눌렀을 때

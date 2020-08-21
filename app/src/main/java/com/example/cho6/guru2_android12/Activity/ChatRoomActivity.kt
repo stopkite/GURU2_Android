@@ -1,15 +1,13 @@
-// s4.채팅방 화면
-package com.example.cho6.guru2_android12
+// s5.채팅방 화면
+package com.example.cho6.guru2_android12.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import com.example.cho6.guru2_android12.Adapter.ChatLeftYou
 import com.example.cho6.guru2_android12.Adapter.ChatRightMe
-import com.example.cho6.guru2_android12.Model.ChatModel
 import com.example.cho6.guru2_android12.Model.ChatNewModel
+import com.example.cho6.guru2_android12.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -17,11 +15,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.activity_chat_room.*
 
 class ChatRoomActivity : AppCompatActivity() {
@@ -116,7 +112,8 @@ class ChatRoomActivity : AppCompatActivity() {
 
         go_to_chat_list_button.setOnClickListener{
 
-            val intent = Intent(this,ChatListActivity::class.java)
+            val intent = Intent(this,
+                ChatListActivity::class.java)
             startActivity(intent)
         }
     }

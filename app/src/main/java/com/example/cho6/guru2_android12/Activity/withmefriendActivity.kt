@@ -1,4 +1,5 @@
-package com.example.cho6.guru2_android12
+//s3.위드미(300m내의 친구 검색)화면
+package com.example.cho6.guru2_android12.Activity
 
 
 import android.Manifest
@@ -21,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback
 import androidx.core.content.ContextCompat
+import com.example.cho6.guru2_android12.Adapter.friendList
+import com.example.cho6.guru2_android12.R
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
