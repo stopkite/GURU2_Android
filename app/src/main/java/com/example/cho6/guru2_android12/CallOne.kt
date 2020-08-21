@@ -64,11 +64,11 @@ class CalloneViewModel : ViewModel(){
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             //=> 상대방의 요청받기 true로 바꿔주기
-            val agreeplease = hashMapOf("request" to true)      // 키값 이름을 바꿔야 할 수 있음
+            val agreeplease = hashMapOf("request" to true)      // 키값 이름을 바꿔야 할 수 있음=요청받기
             db.collection("users").document(otherUid)
                 .set(agreeplease, SetOptions.merge())
             //=> 상대방의 요청한 사람 데이터에 내 데이터 저장하기(uid)
-            val hereMyData= hashMapOf("otherData" to user.uid)
+            val hereMyData= hashMapOf("otherData" to user.uid)  // 전달되는 내정보
             db.collection("users").document(otherUid)
                 .set(hereMyData, SetOptions.merge())
         }
@@ -77,8 +77,24 @@ class CalloneViewModel : ViewModel(){
     // 상대방에게 수락이 왔을 때
     fun otherAgree(){
         //=> 모든 boolean값 초기화
-        //채팅방으로 이동
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null) {
+            //=> 요청받기 false로 초기화
+            val request = hashMapOf("request" to false)      // 키값 이름을 바꿔야 할 수 있음=요청받기
+            db.collection("users").document(user.uid)
+                .set(request, SetOptions.merge())
 
+            //=> 상대방 데이터 초기화하기(uid)
+            val otherData= hashMapOf("otherData" to "")        // 전달되는 내정보
+            db.collection("users").document(user.uid)
+                .set(otherData, SetOptions.merge())
+
+            //=> 수락확인용 데이터 초기화
+            val agree= hashMapOf("agree" to false)        // 수락확인데이터
+            db.collection("users").document(user.uid)
+                .set(agree, SetOptions.merge())
+        }
+        //채팅방으로 이동=> onCreate에서 하는게 코드작성하기 편할 것 같음
     }
 
     // 상대방에게 거절이 왔을 때

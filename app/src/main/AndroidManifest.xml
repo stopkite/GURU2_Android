@@ -32,7 +32,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAdOBoLLp078z_-YaN7Gn4y3YYj-ClyiAQ" />
+            android:value="AIzaSyD9afDd5NytwxJJv2dJFJi0CiQPvixnvow" />
 
         <activity android:name=".friendList" />
         <activity android:name=".MainActivity">
