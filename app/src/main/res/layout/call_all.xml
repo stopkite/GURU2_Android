@@ -3,7 +3,7 @@
     android:layout_width="350dp"
     android:layout_height="200dp"
     android:layout_gravity="center"
-    android:background="@drawable/roundedbutton_orange"
+    android:background="@drawable/roundedbutton"
     android:orientation="vertical">
 
     <LinearLayout
