@@ -17,4 +17,4 @@ withme(위드미)
 + 안희애: LoginActivity, layout, drawable
 + 정지연: MainActivity, ChatListActivity, ChatRoomActivity
 
-# 단, 안드로이드 스튜디오에서는 지도 상의 현재위치를 확인하실 수 없습니다. (실제 핸드폰 기기에서 확인 가능!!) 
+# 단, 안드로이드 스튜디오에서는 지도 상의 현재위치를 확인하실 수 없습니다. (실제 핸드폰 기기에서만 확인 가능!!) 
