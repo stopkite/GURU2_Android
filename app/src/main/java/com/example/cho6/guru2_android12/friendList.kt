@@ -203,11 +203,6 @@ class FriendListViewModel : ViewModel() {
         return distance
     }
 
-    //데이터 베이스에 true false 전환해서 팝업 요청하기(채영 도전!!!!!!!)
-    fun goSign(userUid:String){
-
-    }
-
 }
 
 

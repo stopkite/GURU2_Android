@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/withme_orange_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CallFail"
+        <activity android:name=".deacceptCall"></activity>
+        <activity android:name=".acceptPleasePop" />
+        <activity
+            android:name=".CallFail"
             android:theme="@style/Theme.Dialog" />
         <activity
             android:name=".CallOk"
@@ -27,7 +30,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCQuhSN_lxC5P07BcfzmSNoWPja6y5ElOo" />
+            android:value="AIzaSyAdOBoLLp078z_-YaN7Gn4y3YYj-ClyiAQ" />
 
         <activity android:name=".friendList" />
         <activity android:name=".MainActivity">
